@@ -40,6 +40,7 @@ func main() {
 
 		r.Route("/api", func(r chi.Router) {
 			r.Get("/roms", h.ListROMs)
+			r.Head("/roms/{name}", h.ServeROM)
 			r.Get("/roms/{name}", h.ServeROM)
 
 		})
