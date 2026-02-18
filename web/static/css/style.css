@@ -1,0 +1,365 @@
+:root {
+    --bg-primary: #09090b;
+    --bg-secondary: #0f0f13;
+    --bg-card: #18181b;
+    --bg-card-hover: #1f1f24;
+    --accent: #7c3aed;
+    --accent-light: #a78bfa;
+    --cyan: #06b6d4;
+    --green: #10b981;
+    --red: #ef4444;
+    --text: #e4e4e7;
+    --text-muted: #71717a;
+    --border: rgba(255, 255, 255, .06);
+    --radius: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hero {
+    padding: 4.5rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.logo-icon {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    opacity: .8;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.logo span {
+    color: var(--text);
+}
+
+.subtitle {
+    margin-top: .6rem;
+    color: var(--text-muted);
+    font-size: .85rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+}
+
+.rom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.rom-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.rom-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(124, 58, 237, .3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, .3);
+}
+
+.rom-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(124, 58, 237, .08);
+    border-radius: 8px;
+    color: var(--accent-light);
+}
+
+.rom-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.rom-info h3 {
+    font-size: .95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rom-badge {
+    display: inline-block;
+    margin-top: .3rem;
+    color: var(--text-muted);
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.rom-play {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    background: var(--accent);
+    color: #fff;
+    padding: .4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: .8rem;
+    letter-spacing: .5px;
+    transition: background .2s;
+}
+
+.rom-card:hover .rom-play {
+    background: #6d28d9;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.empty-icon {
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    opacity: .4;
+}
+
+.empty-state h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    font-size: .9rem;
+}
+
+.empty-state code {
+    background: var(--bg-card);
+    padding: .1rem .4rem;
+    border-radius: 4px;
+    font-size: .85rem;
+    color: var(--cyan);
+}
+
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: .75rem;
+    letter-spacing: 1px;
+    opacity: .5;
+}
+
+.play-body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.play-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem 1.25rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .85rem;
+    transition: color .2s;
+}
+
+.nav-back:hover {
+    color: var(--text);
+}
+
+.nav-title {
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--text);
+    letter-spacing: .5px;
+}
+
+.nav-cloud {
+    display: flex;
+    gap: .4rem;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    padding: .4rem 1rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.toolbar-sep {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+}
+
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.toolbar-label {
+    color: var(--text-muted);
+    font-size: .72rem;
+    font-weight: 500;
+    margin-right: .1rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.auto-save-status {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .72rem;
+    color: var(--green);
+    font-weight: 500;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    padding: .4rem .75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: .8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s ease;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.btn:hover {
+    border-color: rgba(124, 58, 237, .3);
+    background: var(--bg-card-hover);
+}
+
+.btn:active {
+    transform: scale(.97);
+}
+
+.btn-cloud {
+    background: rgba(124, 58, 237, .1);
+    border-color: rgba(124, 58, 237, .2);
+    color: var(--accent-light);
+}
+
+.btn-cloud:hover {
+    background: rgba(124, 58, 237, .2);
+}
+
+.btn-download {
+    background: rgba(6, 182, 212, .08);
+    border-color: rgba(6, 182, 212, .15);
+    color: var(--cyan);
+}
+
+.btn-download:hover {
+    background: rgba(6, 182, 212, .18);
+}
+
+.btn-sm {
+    padding: .25rem .5rem;
+    font-size: .72rem;
+    border-radius: 5px;
+}
+
+.btn-outline {
+    background: transparent;
+}
+
+.emulator-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .25rem;
+    background: #000;
+    overflow: hidden;
+}
+
+#game {
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 640px) {
+    .logo { font-size: 1.5rem; letter-spacing: 4px; }
+    .hero { padding: 3rem 1rem 2.5rem; }
+    .rom-grid { grid-template-columns: 1fr; }
+    .play-nav { flex-wrap: wrap; gap: .4rem; }
+    .nav-title { order: -1; width: 100%; text-align: center; }
+    .toolbar { gap: .5rem; padding: .3rem .5rem; }
+}

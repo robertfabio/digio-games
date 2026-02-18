@@ -1,0 +1,54 @@
+# ROM files
+roms/*.sfc
+roms/*.smc
+roms/*.zip
+roms/*.nes
+roms/*.gb
+roms/*.gbc
+roms/*.gba
+roms/*.n64
+roms/*.z64
+
+# Environment files
+*.env
+.env.local
+.env.*.local
+
+# Compiled binaries
+digio-games
+digio-games.exe
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
