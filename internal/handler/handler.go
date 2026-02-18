@@ -3,8 +3,9 @@ package handler
 import (
 	"encoding/base64"
 	"encoding/json"
+	"io"
+	"io/fs"
 	"net/http"
-	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -16,12 +17,12 @@ import (
 )
 
 type Handler struct {
-	store   *db.Store
-	romsDir string
+	store  *db.Store
+	romsFS fs.FS
 }
 
-func New(store *db.Store, romsDir string) *Handler {
-	return &Handler{store: store, romsDir: romsDir}
+func New(store *db.Store, romsFS fs.FS) *Handler {
+	return &Handler{store: store, romsFS: romsFS}
 }
 
 type romEntry struct {
@@ -50,16 +51,24 @@ func (h *Handler) ListROMs(w http.ResponseWriter, r *http.Request) {
 func (h *Handler) ServeROM(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
 	safe := filepath.Base(name)
-	path := filepath.Join(h.romsDir, safe)
 
-	if _, err := os.Stat(path); err != nil {
+	f, err := h.romsFS.Open(safe)
+	if err != nil {
 		http.NotFound(w, r)
+		return
+	}
+	defer f.Close()
+
+	stat, err := f.Stat()
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/octet-stream")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	http.ServeFile(w, r, path)
+	w.Header().Set("Content-Length", strconv.FormatInt(stat.Size(), 10))
+	io.Copy(w, f)
 }
 
 func (h *Handler) ListSaves(w http.ResponseWriter, r *http.Request) {
@@ -138,7 +147,7 @@ func (h *Handler) DeleteSave(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) scanROMs() []romEntry {
-	entries, err := os.ReadDir(h.romsDir)
+	entries, err := fs.ReadDir(h.romsFS, ".")
 	if err != nil {
 		return nil
 	}

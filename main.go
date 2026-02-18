@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"embed"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -13,6 +15,9 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
+
+//go:embed roms
+var romsFS embed.FS
 
 func main() {
 	databaseURL := os.Getenv("DATABASE_URL")
@@ -32,10 +37,12 @@ func main() {
 		log.Fatalf("migrate: %v", err)
 	}
 
-	romsDir := envOr("ROMS_DIR", "roms")
-	os.MkdirAll(romsDir, 0o755)
+	romsSubFS, err := fs.Sub(romsFS, "roms")
+	if err != nil {
+		log.Fatalf("roms embed: %v", err)
+	}
 
-	h := handler.New(store, romsDir)
+	h := handler.New(store, romsSubFS)
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)

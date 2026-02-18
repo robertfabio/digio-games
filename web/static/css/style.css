@@ -3,8 +3,8 @@
     --bg-secondary: #0f0f13;
     --bg-card: #18181b;
     --bg-card-hover: #1f1f24;
-    --accent: #7c3aed;
-    --accent-light: #a78bfa;
+    --accent: #3a8eed;
+    --accent-light: #8bb2fa;
     --cyan: #06b6d4;
     --green: #10b981;
     --red: #ef4444;
@@ -99,7 +99,7 @@ body {
 
 .rom-card:hover {
     background: var(--bg-card-hover);
-    border-color: rgba(124, 58, 237, .3);
+    border-color: rgb(182, 209, 248);
     transform: translateY(-2px);
     box-shadow: 0 4px 24px rgba(0, 0, 0, .3);
 }
