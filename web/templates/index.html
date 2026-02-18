@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGIO GAMES</title>
     <link rel="stylesheet" href="/digio.com.br/static/css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='6' x2='10' y1='11' y2='11'/><line x1='8' x2='8' y1='9' y2='13'/><line x1='15' x2='15.01' y1='12' y2='12'/><line x1='18' x2='18.01' y1='10' y2='10'/><path d='M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z'/></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='6' x2='10' y1='11' y2='11'/><line x1='8' x2='8' y1='9' y2='13'/><line x1='15' x2='15.01' y1='12' y2='12'/><line x1='18' x2='18.01' y1='10' y2='10'/><path d='M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z'/></svg>">
 </head>
+
 <body>
     <header class="hero">
         <div class="hero-content">
             <div class="logo-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="6" x2="10" y1="11" y2="11" />
+                    <line x1="8" x2="8" y1="9" y2="13" />
+                    <line x1="15" x2="15.01" y1="12" y2="12" />
+                    <line x1="18" x2="18.01" y1="10" y2="10" />
+                    <path
+                        d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
                 </svg>
             </div>
             <h1 class="logo">DIGIO <span>GAMES</span></h1>
-            <p class="subtitle">Super Nintendo · Cloud Saves</p>
+            <p class="subtitle">Super Nintendo</p>
         </div>
     </header>
 
@@ -26,10 +35,11 @@
             {{range .ROMs}}
             <a href="/digio.com.br/play/{{.FileName}}" class="rom-card">
                 <div class="rom-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect width="20" height="14" x="2" y="3" rx="2"/>
-                        <line x1="8" x2="16" y1="21" y2="21"/>
-                        <line x1="12" x2="12" y1="17" y2="21"/>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
                     </svg>
                 </div>
                 <div class="rom-info">
@@ -38,7 +48,7 @@
                 </div>
                 <div class="rom-play">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                        <polygon points="6 3 20 12 6 21 6 3"/>
+                        <polygon points="6 3 20 12 6 21 6 3" />
                     </svg>
                     PLAY
                 </div>
@@ -48,10 +58,11 @@
         {{else}}
         <div class="empty-state">
             <div class="empty-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H14.76a2 2 0 0 1 1.789 1.106L18 14"/>
-                    <path d="M6 14h12"/>
-                    <rect width="20" height="14" x="2" y="6" rx="2"/>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H14.76a2 2 0 0 1 1.789 1.106L18 14" />
+                    <path d="M6 14h12" />
+                    <rect width="20" height="14" x="2" y="6" rx="2" />
                 </svg>
             </div>
             <h2>Nenhuma ROM encontrada</h2>
@@ -61,7 +72,8 @@
     </main>
 
     <footer class="footer">
-        <p>DIGIO GAMES · Saves na nuvem via PostgreSQL</p>
+        <p>DIGIO GAMES</p>
     </footer>
 </body>
+
 </html>

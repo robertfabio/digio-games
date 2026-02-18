@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"encoding/base64"
+
 	"encoding/json"
 	"io"
 	"io/fs"
@@ -10,19 +10,17 @@ import (
 	"strconv"
 	"strings"
 
-	"digio-games/internal/db"
 	"digio-games/web"
 
 	"github.com/go-chi/chi/v5"
 )
 
 type Handler struct {
-	store  *db.Store
 	romsFS fs.FS
 }
 
-func New(store *db.Store, romsFS fs.FS) *Handler {
-	return &Handler{store: store, romsFS: romsFS}
+func New(romsFS fs.FS) *Handler {
+	return &Handler{romsFS: romsFS}
 }
 
 type romEntry struct {
@@ -71,80 +69,7 @@ func (h *Handler) ServeROM(w http.ResponseWriter, r *http.Request) {
 	io.Copy(w, f)
 }
 
-func (h *Handler) ListSaves(w http.ResponseWriter, r *http.Request) {
-	rom := chi.URLParam(r, "rom")
-	saves, err := h.store.ListSaves(r.Context(), rom)
-	if err != nil {
-		respondJSON(w, http.StatusInternalServerError, errBody(err))
-		return
-	}
-	if saves == nil {
-		saves = []db.Save{}
-	}
-	respondJSON(w, http.StatusOK, saves)
-}
 
-func (h *Handler) GetSaveData(w http.ResponseWriter, r *http.Request) {
-	rom := chi.URLParam(r, "rom")
-	saveType := r.URL.Query().Get("type")
-	if saveType == "" {
-		saveType = "sram"
-	}
-	slot, _ := strconv.Atoi(r.URL.Query().Get("slot"))
-
-	data, err := h.store.GetSaveData(r.Context(), rom, saveType, slot)
-	if err != nil {
-		respondJSON(w, http.StatusNotFound, map[string]string{"error": "not found"})
-		return
-	}
-	respondJSON(w, http.StatusOK, map[string]string{
-		"data": base64.StdEncoding.EncodeToString(data),
-	})
-}
-
-type saveRequest struct {
-	SaveType string `json:"save_type"`
-	Slot     int    `json:"slot"`
-	Data     string `json:"data"`
-}
-
-func (h *Handler) SaveGame(w http.ResponseWriter, r *http.Request) {
-	rom := chi.URLParam(r, "rom")
-
-	var req saveRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		respondJSON(w, http.StatusBadRequest, errBody(err))
-		return
-	}
-	if req.SaveType == "" {
-		req.SaveType = "sram"
-	}
-
-	data, err := base64.StdEncoding.DecodeString(req.Data)
-	if err != nil {
-		respondJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid base64"})
-		return
-	}
-
-	if err := h.store.UpsertSave(r.Context(), rom, req.SaveType, req.Slot, data); err != nil {
-		respondJSON(w, http.StatusInternalServerError, errBody(err))
-		return
-	}
-	respondJSON(w, http.StatusOK, map[string]string{"status": "ok"})
-}
-
-func (h *Handler) DeleteSave(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(chi.URLParam(r, "id"))
-	if err != nil {
-		respondJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid id"})
-		return
-	}
-	if err := h.store.DeleteSave(r.Context(), id); err != nil {
-		respondJSON(w, http.StatusInternalServerError, errBody(err))
-		return
-	}
-	respondJSON(w, http.StatusOK, map[string]string{"status": "ok"})
-}
 
 func (h *Handler) scanROMs() []romEntry {
 	entries, err := fs.ReadDir(h.romsFS, ".")
