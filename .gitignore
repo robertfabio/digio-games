@@ -1,14 +1,3 @@
-# ROM files
-roms/*.sfc
-roms/*.smc
-roms/*.zip
-roms/*.nes
-roms/*.gb
-roms/*.gbc
-roms/*.gba
-roms/*.n64
-roms/*.z64
-
 # Environment files
 *.env
 .env.local
